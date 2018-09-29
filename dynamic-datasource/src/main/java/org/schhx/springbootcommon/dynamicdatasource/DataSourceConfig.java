@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
@@ -31,9 +32,11 @@ public class DataSourceConfig {
 
     @Bean("dynamicDataSource")
     @Primary
+    @DependsOn({"masterDataSource", "slaveDataSource"})
     public DataSource dynamicDataSource(@Qualifier("masterDataSource") DataSource masterDataSource,
                                         @Qualifier("slaveDataSource") DataSource slaveDataSource) {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
+        dynamicDataSource.setDefaultTargetDataSource(masterDataSource);
         dynamicDataSource.setTargetDataSources(new HashMap<Object, Object>() {
             {
                 put(DataSourceConstant.MASTER, masterDataSource);

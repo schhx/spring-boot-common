@@ -12,13 +12,13 @@ cd spring-boot-common
 mvn clean install
 ```
 
-2. 在其他项目pom.xml文件中直接引入即可
+2. 引入依赖
 
 ```
 <dependency>
     <groupId>org.schhx.spring-boot-common</groupId>
     <artifactId>exception-handler</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2.0.5-SNAPSHOT</version>
 </dependency>
 
 ```
