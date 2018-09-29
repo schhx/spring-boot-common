@@ -28,7 +28,7 @@ mvn clean install
 <dependency>
     <groupId>org.schhx.spring-boot-common</groupId>
     <artifactId>dynamic-datasource</artifactId>
-    <version>2.0.5-SNAPSHOT</version>
+    <version>1.5.16-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ mvn clean install
 spring:
   datasource:
     master:
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_boot_learn?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=true
+      url: jdbc:mysql://127.0.0.1:3306/spring_boot_learn?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=true
       driver-class-name: com.mysql.jdbc.Driver
       username: root
       password: root
@@ -51,7 +51,7 @@ spring:
       validation-interval: 60000
       time-between-eviction-runs-millis: 60000
     slave:
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_boot_learn_2?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=true
+      url: jdbc:mysql://127.0.0.1:3306/spring_boot_learn_2?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=true
       driver-class-name: com.mysql.jdbc.Driver
       username: root
       password: root

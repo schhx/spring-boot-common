@@ -18,7 +18,7 @@ mvn clean install
 <dependency>
     <groupId>org.schhx.spring-boot-common</groupId>
     <artifactId>exception-handler</artifactId>
-    <version>2.0.5-SNAPSHOT</version>
+    <version>1.5.16-SNAPSHOT</version>
 </dependency>
 
 ```

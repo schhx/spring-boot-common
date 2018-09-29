@@ -26,20 +26,20 @@ public class UserService {
     }
 
     public User getById(String id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findOne(id);
     }
 
     @UseSlave
     public User getByIdSlave(String id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findOne(id);
     }
 
     public void delete(String id) {
-        userRepository.deleteById(id);
+        userRepository.delete(id);
     }
 
     @UseSlave
     public void deleteSlave(String id) {
-        userRepository.deleteById(id);
+        userRepository.delete(id);
     }
 }
