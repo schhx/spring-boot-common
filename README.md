@@ -6,7 +6,7 @@
 
 模块 | 说明
 ---|---
-[spring-boot-exception-handler](https://github.com/schhx/spring-boot-common/tree/master/spring-boot-exception-handler)  | 提供了常用的异常处理
-
+[exception-handler](https://github.com/schhx/spring-boot-common/tree/master/exception-handler)  | 提供了常用的异常处理
+[dynamic-datasource](https://github.com/schhx/spring-boot-common/tree/master/dynamic-datasource)  | 动态切换数据源
 
 

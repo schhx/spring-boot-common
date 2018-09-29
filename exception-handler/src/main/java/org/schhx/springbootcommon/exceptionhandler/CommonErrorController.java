@@ -30,6 +30,6 @@ public class CommonErrorController implements ErrorController {
     public ErrorVO error(HttpServletRequest request){
         RequestAttributes requestAttributes = new ServletRequestAttributes(request);
         Throwable throwable = errorAttributes.getError((WebRequest) requestAttributes);
-        return ErrorVO.of("未知异常--comm", throwable.getMessage());
+        return ErrorVO.of("未知异常", throwable);
     }
 }

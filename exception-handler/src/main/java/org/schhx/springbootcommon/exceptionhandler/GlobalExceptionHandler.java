@@ -74,17 +74,17 @@ public class GlobalExceptionHandler {
     })
     public ErrorVO handleException(Exception e) {
         if (e instanceof NoHandlerFoundException) {
-            return ErrorVO.of("请求路由不存在", e.getMessage());
+            return ErrorVO.of("请求路由不存在", e);
         } else if (e instanceof MissingPathVariableException) {
-            return ErrorVO.of("缺少路径参数", e.getMessage());
+            return ErrorVO.of("缺少路径参数", e);
         } else if (e instanceof HttpMessageNotReadableException) {
-            return ErrorVO.of("请输入正确的参数", e.getMessage());
+            return ErrorVO.of("请输入正确的参数", e);
         } else if (e instanceof HttpRequestMethodNotSupportedException) {
-            return ErrorVO.of("HTTP请求方法错误", e.getMessage());
+            return ErrorVO.of("HTTP请求方法错误", e);
         } else if(e instanceof MissingServletRequestParameterException){
-            return ErrorVO.of("缺少必填参数", e.getMessage());
+            return ErrorVO.of("缺少必填参数", e);
         }
-        return ErrorVO.of(e.getMessage(), e.getMessage());
+        return ErrorVO.of(e.getMessage(), e);
     }
 
     @ExceptionHandler(BaseException.class)
@@ -105,7 +105,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ErrorVO handleException(HttpServletRequest request, Exception e) {
         logError(request, e);
-        return ErrorVO.of("未知异常", e.getMessage());
+        return ErrorVO.of("未知异常", e);
     }
 
     private void logError(HttpServletRequest request, Exception e) {
