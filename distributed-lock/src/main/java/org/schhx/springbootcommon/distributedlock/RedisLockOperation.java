@@ -46,14 +46,15 @@ public class RedisLockOperation implements LockOperation {
     }
 
     @Override
-    public void unlock(String key, String value, long delayTime, TimeUnit unit) {
+    public boolean unlock(String key, String value, long delayTime, TimeUnit unit) {
         if (value == null) {
             throw new NullPointerException("value is null");
         }
         if (delayTime <= 0) {
-            unlock(key, value);
+            return unlock(key, value);
         } else {
             executorService.schedule(() -> unlock(key, value), delayTime, unit);
+            return true;
         }
     }
 }

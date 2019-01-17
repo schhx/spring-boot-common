@@ -35,6 +35,7 @@ public interface LockOperation {
      * @param value
      * @param delayTime
      * @param unit
+     * @return
      */
-    void unlock(final String key, final String value, long delayTime, TimeUnit unit);
+    boolean unlock(final String key, final String value, long delayTime, TimeUnit unit);
 }
