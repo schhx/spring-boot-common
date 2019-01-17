@@ -39,7 +39,7 @@ public class DistributedLockAspect {
         try {
             return joinPoint.proceed();
         } finally {
-//            lockOperation.unlock(redisKey, value);
+            lockOperation.unlock(redisKey, value);
         }
     }
 
