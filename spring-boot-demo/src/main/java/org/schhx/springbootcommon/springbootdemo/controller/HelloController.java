@@ -1,5 +1,6 @@
 package org.schhx.springbootcommon.springbootdemo.controller;
 
+import org.schhx.springbootcommon.distributedlock.DistributedLock;
 import org.schhx.springbootcommon.exceptionhandler.BaseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,12 @@ public class HelloController {
             int a = 1 / 0;
         }
         return "Hello " + name;
+    }
+
+    @GetMapping("/lock")
+    @DistributedLock(prefix = "lock-test", key = "#id")
+    public String lock(String id) {
+        return id;
     }
 
 }
