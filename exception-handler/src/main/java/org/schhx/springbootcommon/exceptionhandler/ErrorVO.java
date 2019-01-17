@@ -25,7 +25,7 @@ public class ErrorVO {
     }
 
     public static ErrorVO of(String error, Throwable originalThrowable) {
-        return new ErrorVO(error, originalThrowable.getClass().getName() + originalThrowable.getMessage());
+        return new ErrorVO(error, originalThrowable.getClass().getName() + " : " +  originalThrowable.getMessage());
     }
 
 }
