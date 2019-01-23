@@ -9,7 +9,8 @@
 模块 | 说明
 ---|---
 [exception-handler](https://github.com/schhx/spring-boot-common/tree/1.x/exception-handler)  | 提供了常用的异常处理
-[dynamic-datasource](https://github.com/schhx/spring-boot-common/tree/1.x/dynamic-datasource)  | 动态切换数据源
+[dynamic-datasource](https://github.com/schhx/spring-boot-common/tree/1.x/dynamic-datasource)  | 动态切换数据源(一主一从)
+[dynamic-datasource-multi-slave](https://github.com/schhx/spring-boot-common/tree/1.x/dynamic-datasource-multi-slave)  | 动态切换数据源(一主多从)
 [distributed-lock](https://github.com/schhx/spring-boot-common/tree/1.x/distributed-lock)  | 分布式锁
 
 
