@@ -18,7 +18,7 @@ mvn clean install
 <dependency>
     <groupId>org.schhx.spring-boot-common</groupId>
     <artifactId>distributed-lock</artifactId>
-    <version>x.y.z</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

@@ -1,14 +1,6 @@
-## 主从数据源  dynamic-datasource
+## 一主多从数据源  dynamic-datasource-multi-slave
 
-Spring Boot 项目中使用主从数据库有两种方法：
-
-- 一种是使用多数据源，然后在不同的包下面使用不同的数据源，[示例](https://github.com/schhx/spring-boot-learn)；
-- 另外一种就是使用动态数据源，在运行时动态指定数据源
-
-第一种方法更适合多个不同的数据库表的情况，而主从数据库更适合使用动态指定的方式，因为主从数据库虽然是两个（或多个）不同的数据源，
-但是它们的数据库表却是相同的，多数据源的方式会有很多代码重复，对调用方也很不友好。
-
-本项目适用一个主库一个从库的情况([一主多从版本](https://github.com/schhx/spring-boot-common/tree/master/dynamic-datasource-multi-slave))，通过在服务层添加注解的方式动态指定使用主库还是从库，对于服务层来说和使用一个数据源几乎没有区别。
+本项目适用一个主库多个从库的情况([一主一从版本](https://github.com/schhx/spring-boot-common/tree/master/dynamic-datasource))，通过在服务层添加注解的方式动态指定使用主库还是从库，对于服务层来说和使用一个数据源几乎没有区别。
 
 本项目可以与JdbcTemplate、MyBatis、JPA整合。
 
@@ -27,7 +19,7 @@ mvn clean install
 ```
 <dependency>
     <groupId>org.schhx.spring-boot-common</groupId>
-    <artifactId>dynamic-datasource</artifactId>
+    <artifactId>dynamic-datasource-multi-slave</artifactId>
     <version>2.0.0</version>
 </dependency>
 ```
@@ -63,6 +55,19 @@ spring:
       validation-query: select 1 from dual
       validation-interval: 60000
       time-between-eviction-runs-millis: 60000
+    slave2:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_boot_learn_3?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&useSSL=true
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root
+      initialSize : 3
+      maxActive: 15
+      maxIdle: 15
+      minIdle: 3
+      test-while-idle: true
+      validation-query: select 1 from dual
+      validation-interval: 60000
+      time-between-eviction-runs-millis: 60000
 ```
 
 4. 默认使用主库，如果需要使用从库，只需要在方法上添加注解即可
@@ -71,6 +76,18 @@ spring:
 @UseSlave
 public User getById(String id) {
     return userRepository.findById(id).get();
+}
+```
+
+5. 存在多个从库时，每次请求会选取一个从库，默认提供的实现是[RoundDataSourceSelector](https://github.com/schhx/spring-boot-common/blob/master/dynamic-datasource-multi-slave/src/main/java/org/schhx/springbootcommon/dynamicdatasource/selector/RoundDataSourceSelector.java)，用户可以自定义具体的实现。继承 [AbstractDataSourceSelector](https://github.com/schhx/spring-boot-common/blob/master/dynamic-datasource-multi-slave/src/main/java/org/schhx/springbootcommon/dynamicdatasource/selector/AbstractDataSourceSelector.java)，并声明为Bean。
+
+```
+@Component
+public class MyDataSourceSelector extends AbstractDataSourceSelector {
+    @Override
+    protected String getSlaveDataSourceKey() {
+        return "xxx";
+    }
 }
 ```
 
