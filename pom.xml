@@ -27,6 +27,7 @@
         <module>exception-handler</module>
         <module>dynamic-datasource</module>
         <module>distributed-lock</module>
+        <module>dynamic-datasource-multi-slave</module>
     </modules>
 
     <build>

@@ -32,9 +32,15 @@
 			<version>1.5.16-SNAPSHOT</version>
 		</dependency>
 
+		<!--<dependency>-->
+			<!--<groupId>org.schhx.spring-boot-common</groupId>-->
+			<!--<artifactId>dynamic-datasource</artifactId>-->
+			<!--<version>1.5.16-SNAPSHOT</version>-->
+		<!--</dependency>-->
+
 		<dependency>
 			<groupId>org.schhx.spring-boot-common</groupId>
-			<artifactId>dynamic-datasource</artifactId>
+			<artifactId>dynamic-datasource-multi-slave</artifactId>
 			<version>1.5.16-SNAPSHOT</version>
 		</dependency>
 

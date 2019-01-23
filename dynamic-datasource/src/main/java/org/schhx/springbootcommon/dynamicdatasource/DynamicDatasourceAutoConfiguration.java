@@ -6,6 +6,6 @@ import org.springframework.context.annotation.Import;
  * @author shanchao
  * @date 2018-09-28
  */
-@Import({DataSourceAop.class, DataSourceConfig.class})
+@Import({DataSourceAspect.class, DataSourceConfig.class})
 public class DynamicDatasourceAutoConfiguration {
 }

@@ -3,21 +3,16 @@ package org.schhx.springbootcommon.dynamicdatasource;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Method;
 
 /**
  * @author shanchao
  * @date 2018-08-30
  */
 @Aspect
-@Component
 @Slf4j
 @Order(1)
-public class DataSourceAop {
+public class DataSourceAspect {
 
     @Pointcut("@annotation(UseSlave)")
     public void aspect() {
@@ -26,7 +21,7 @@ public class DataSourceAop {
     @Before("aspect()")
     public void before(JoinPoint point) {
         try {
-            DBContextHolder.setDbType(DataSourceConstant.SLAVE);
+            DBContextHolder.setDbType(DataSourceConstant.DB_TYPE_SLAVE);
         } catch (Exception e) {
             log.error("数据源切换切面异常", e);
         }
